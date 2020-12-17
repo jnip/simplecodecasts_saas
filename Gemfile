@@ -14,6 +14,8 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
+# Use boostrap library for style
+gem 'bootstrap-sass', '3.4.1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
