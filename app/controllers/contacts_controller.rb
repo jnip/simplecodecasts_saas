@@ -5,12 +5,26 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.new(contact_params)
+    error = !@contact.save
+    exception = false
 
-    if @contact.save
-      flash[:success] = "Message Sent."
+    unless error
+      begin
+        contact_emailComments
+      rescue Exception => e
+        error = true
+        exception = e
+      end
+    end
+
+    if error
+      flash[:danger] = "Error occured, message has not been sent."
+      if exception
+        flash[:warning] = exception
+      end
       redirect_to new_contact_path
     else
-      flash[:danger] = "Error occured, message has not been sent."
+      flash[:success] = "Message Sent."
       redirect_to new_contact_path
     end
   end
@@ -18,5 +32,13 @@ class ContactsController < ApplicationController
   private
     def contact_params
       params.require(:contact).permit(:name, :email, :comments)
+    end
+
+    def contact_emailComments
+      name = params[:contact][:name]
+      email = params[:contact][:email]
+      comments = params[:contact][:comments]
+
+      ContactMailer.send_comments(name, email, comments).deliver
     end
 end
