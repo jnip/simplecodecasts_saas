@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To view this app in action: https://morning-badlands-62039.herokuapp.com
 
-Things you may want to cover:
+This Ruby on Rails project follows the Udemy Course: The Complete Web Developer Bootcamp - Beginner to Expert - https://www.udemy.com/course/job-ready-web-developer/
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This project employs updated technologies (Rails 6); The Udemy course is about 6 years older than this project.
