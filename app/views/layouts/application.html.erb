@@ -35,7 +35,6 @@
             <%= button_to "Sign Out", destroy_user_session_path, class: "btn btn-danger", method: :delete %>
           <% else %>
             <%= link_to "Log In", new_user_session_path, class: "btn btn-primary mr-lg-1" %>
-            <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success" %>
           <% end %>
         </div>
       </div>
