@@ -14,6 +14,8 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
+# Use devise for user authentication
+gem 'devise'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
