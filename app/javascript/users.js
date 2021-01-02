@@ -1,10 +1,12 @@
 $(document).ready(function() {
   Stripe.setPublishableKey($("meta[name='stripe-key']").prop("content"));
 
-  $('#pro_form #form-submit-btn').click(function(e) {
+  let $form = $("#pro_form");
+  let $formSubmitBtn = $("#form-submit-btn");
+  $formSubmitBtn.click(function(e) {
     // Prevent form submission
     e.preventDefault();
-    $(this).prop("disabled", true);
+    $formSubmitBtn.prop("disabled", true);
 
     // Send credit card info to Stripe
     Stripe.card.createToken({
@@ -16,9 +18,14 @@ $(document).ready(function() {
 
     // Submit the form
     function stripeResponseHandler(status, response) {
+      if (response.error) {
+        alert("Stripe Error: " + response.error.message);
+        $formSubmitBtn.prop("disabled", false);
+        return;
+      }
       let stripe_token = response.id;
-      $("#pro_form").append($('<input>').prop({type: "hidden", name: "user[stripe_card_token]", value: stripe_token}));
-      $("#pro_form").submit();
+      $form.append($('<input>').prop({type: "hidden", name: "user[stripe_card_token]", value: stripe_token}));
+      $form.submit();
     }
   });
 });
