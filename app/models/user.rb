@@ -5,4 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :plan
+  attr_accessor :stripe_card_token
+
+  def save_with_payment
+    if valid?
+      customer = Stripe::Customer.create(description: email, plan: Plan.find(plan_id).stripe_id, card: stripe_card_token)
+      self.stripe_customer_token = customer.id
+      save!
+    end
+  end
 end
