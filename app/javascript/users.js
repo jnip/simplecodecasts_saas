@@ -2,7 +2,7 @@ $(document).ready(function() {
   Stripe.setPublishableKey($("meta[name='stripe-key']").prop("content"));
 
   let $form = $("#pro_form");
-  let $formSubmitBtn = $("#form-submit-btn");
+  let $formSubmitBtn = $("#pro_form #form-submit-btn");
   $formSubmitBtn.click(function(e) {
     // Prevent form submission
     e.preventDefault();
